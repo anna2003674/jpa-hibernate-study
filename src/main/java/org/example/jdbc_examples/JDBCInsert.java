@@ -1,29 +1,28 @@
-package org.example;
+package org.example.jdbc_examples;
+
+import org.example.entity.Student;
 
 import java.sql.*;
 
-public class JDBCInsert_v2 {
+public class JDBCInsert {
+
     static final String DB_URL = "jdbc:postgresql://localhost:5432/hibernate-demo";
     static final String USER = "postgres";
     static final String PWD = "postgres";
 
     public static void main(String[] args) {
         Connection connection = null;
-        Student student = new Student("Loe", "Farrel", 8.4);
+        Student student = new Student("Chanel", "King", 9.1);
 
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PWD);
-            Statement statement = connection.createStatement();
-            String sqlQuery = "INSERT INTO students (name, surname, avg_grade) VALUES" +
-                "('" +
-                student.getName() +
-                "', '" +
-                student.getSurname() +
-                "'," +
-                student.getAvgGrade() +
-                ")";
-            String sqlQuery2 = "INSERT INTO students (name, surname, avg_grade) VALUES ('Anna','Teremizova',6.6)";
-            statement.executeUpdate(sqlQuery);
+
+            PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO students(name, surname, avg_grade) VALUES (?,?,?)");
+            statement.setString(1, student.getName());
+            statement.setString(2, student.getSurname());
+            statement.setDouble(3, student.getAvgGrade());
+            statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
