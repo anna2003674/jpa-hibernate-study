@@ -2,6 +2,8 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "students")
 public class Student {
@@ -19,6 +21,9 @@ public class Student {
     @Column(name = "avg_grade")
     private Double avgGrade;
 
+    @Transient
+    private LocalDateTime createdDate;
+
     public Student() {
     }
 
@@ -26,6 +31,7 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
+        createdDate = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -60,6 +66,14 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -67,6 +81,7 @@ public class Student {
             ", name='" + name + '\'' +
             ", surname='" + surname + '\'' +
             ", avgGrade=" + avgGrade +
+            ", createdDate=" + createdDate +
             '}';
     }
 }
