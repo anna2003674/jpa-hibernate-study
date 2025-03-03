@@ -28,7 +28,7 @@ public class Teacher {
     public Teacher() {
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "teacher_uni",
         joinColumns = @JoinColumn(name = "teacher_id"),
         inverseJoinColumns = @JoinColumn(name = "university_id"))

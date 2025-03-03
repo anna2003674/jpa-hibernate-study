@@ -3,6 +3,7 @@ package org.example.relationships.many_to_many;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,17 +15,16 @@ public class University {
     private Long id;
 
     @Column(name = "name")
-    private Long name;
+    private String name;
 
     @Column(name = "founding_date")
-    private Long foundingDate;
+    private Date foundingDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "teacher_uni",
         joinColumns = @JoinColumn(name = "university_id"),
         inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     private List<Teacher> teachers = new ArrayList<>();
-
 
     public void addTeacherToUniversity(Teacher teacher) {
         teachers.add(teacher);
@@ -33,7 +33,7 @@ public class University {
     public University() {
     }
 
-    public University(Long name, Long foundingDate) {
+    public University(String name, Date foundingDate) {
         this.name = name;
         this.foundingDate = foundingDate;
     }
@@ -46,19 +46,19 @@ public class University {
         this.id = id;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Long getFoundingDate() {
+    public Date getFoundingDate() {
         return foundingDate;
     }
 
-    public void setFoundingDate(Long foundingDate) {
+    public void setFoundingDate(Date foundingDate) {
         this.foundingDate = foundingDate;
     }
 

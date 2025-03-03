@@ -5,9 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-import java.sql.Date;
-
-public class ManyToManyBi {
+public class ManyToManyFind {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa-course");
         EntityManager entityManager = factory.createEntityManager();
@@ -15,15 +13,10 @@ public class ManyToManyBi {
 
         try {
             transaction.begin();
-            University university = new University("Harvard",
-                Date.valueOf("1636-10-28"));
-            Teacher teacher1 = new Teacher("Alessandro", "Lozano", "CS", true);
-            Teacher teacher2 = new Teacher("Rio", "Berger", "Biology", false);
-            Teacher teacher3 = new Teacher("Landry", "Shelton", "Math", true);
-            university.addTeacherToUniversity(teacher1);
-            university.addTeacherToUniversity(teacher2);
-            university.addTeacherToUniversity(teacher3);
-            entityManager.persist(university);
+            University university = entityManager.find(University.class, 1);
+            System.out.println(university);
+            System.out.println(university.getTeachers());
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
