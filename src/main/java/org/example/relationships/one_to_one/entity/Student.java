@@ -2,8 +2,8 @@ package org.example.relationships.one_to_one.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "students")
+//@Entity
+//@Table(name = "students")
 public class Student {
     @Id
     @Column(name = "id")
