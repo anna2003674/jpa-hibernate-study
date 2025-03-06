@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "universities")
+//@Entity
+//@Table(name = "universities")
 public class University {
     @Id
     @Column(name = "id")

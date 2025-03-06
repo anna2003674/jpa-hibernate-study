@@ -4,16 +4,16 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import jakarta.persistence.Persistence;
-import org.example.entity.Student;
+import org.example.entity.StudentEntity;
 
 public class Find_ex {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence
             .createEntityManagerFactory("jpa-course");
         EntityManager entityManager = factory.createEntityManager();
-        Student student = null;
+        StudentEntity student = null;
         try {
-            student = entityManager.find(Student.class, 6);
+            student = entityManager.find(StudentEntity.class, 6);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -1,6 +1,6 @@
 package org.example.jdbc_examples;
 
-import org.example.entity.Student;
+import org.example.entity.StudentEntity;
 
 import java.sql.*;
 
@@ -12,7 +12,7 @@ public class JDBCInsert {
 
     public static void main(String[] args) {
         Connection connection = null;
-        Student student = new Student("Chanel", "King", 9.1);
+        StudentEntity student = new StudentEntity("Chanel", "King", 9.1);
 
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PWD);

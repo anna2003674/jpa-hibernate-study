@@ -1,28 +1,23 @@
-package org.example.entity;
+package org.example.jpql.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
-//@Entity
-//@Table(name = "test_students")
+@Entity
+@Table(name = "stud")
 public class Student {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "avg_grade", nullable = false)
+    @Column(name = "avg_grade")
     private Double avgGrade;
-
-    @Transient
-    private LocalDateTime createdDate;
 
     public Student() {
     }
@@ -31,7 +26,6 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
-        createdDate = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -66,22 +60,13 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
             "id=" + id +
             ", name='" + name + '\'' +
             ", surname='" + surname + '\'' +
-            ", avgGrade=" + avgGrade +
-            ", createdDate=" + createdDate +
+            ", avgGrade='" + avgGrade + '\'' +
             '}';
     }
 }
