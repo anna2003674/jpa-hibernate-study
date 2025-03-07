@@ -8,6 +8,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "universities")
+@NamedQueries({@NamedQuery(name = "University.allUniversitiesLessOrEqualsTo2",
+    query = "SELECT u FROM University u WHERE size(u.students) <= 2"),
+    @NamedQuery(name = "University.studentsWithAvgGradeBetween",
+        query = "SELECT s FROM Student s WHERE avgGrade BETWEEN :from and :to")})
 public class University {
     @Id
     @Column(name = "id")
