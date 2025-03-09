@@ -1,4 +1,4 @@
-package org.example.jpql.entity;
+package org.example.criteria_query.entity;
 
 import jakarta.persistence.*;
 
@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@Entity
-//@Table(name = "universities")
-@NamedQueries({@NamedQuery(name = "University.allUniversitiesLessOrEqualsTo2",
-    query = "SELECT u FROM University u WHERE size(u.students) <= 2"),
-    @NamedQuery(name = "University.studentsWithAvgGradeBetween",
-        query = "SELECT s FROM Student s WHERE avgGrade BETWEEN :from and :to")})
+@Entity
+@Table(name = "universities")
 public class University {
     @Id
     @Column(name = "id")
@@ -24,7 +20,7 @@ public class University {
     @Column(name = "founding_date")
     private Date foundingDate;
 
-    @OneToMany(mappedBy = "university")
+    @OneToMany(mappedBy = "university", fetch = FetchType.LAZY)
     private List<Student> students = new ArrayList<>();
 
     public void addStudentToUniversity(Student student) {

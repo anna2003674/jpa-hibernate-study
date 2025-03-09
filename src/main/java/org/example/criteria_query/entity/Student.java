@@ -1,9 +1,9 @@
-package org.example.jpql.entity;
+package org.example.criteria_query.entity;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "students")
+@Entity
+@Table(name = "students")
 public class Student {
     @Id
     @Column(name = "id")
@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "avg_grade")
     private Double avgGrade;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private University university;
 
