@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Подключение к БД -->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernate-demo</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
+        <!-- Логирование SQL-запросов -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <!-- Автоматическое обновление схемы БД (не рекомендуется для продакшена) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Указываем диалект PostgreSQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <!-- Координатор транзакций -->
+        <property name="hibernate.current_session_context_class">thread</property>
+    </session-factory>
+</hibernate-configuration>

@@ -1,9 +1,9 @@
-package org.example.criteria_query.entity;
+package org.example.hiber.entity;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "students")
+@Entity
+@Table(name = "students")
 public class Student {
     @Id
     @Column(name = "id")
@@ -19,11 +19,8 @@ public class Student {
     @Column(name = "avg_grade")
     private Double avgGrade;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "university_id")
-    private University university;
-
     public Student() {
+
     }
 
     public Student(String name, String surname, Double avgGrade) {
@@ -64,21 +61,13 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
-    public University getUniversity() {
-        return university;
-    }
-
-    public void setUniversity(University university) {
-        this.university = university;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
             "id=" + id +
             ", name='" + name + '\'' +
             ", surname='" + surname + '\'' +
-            ", avgGrade='" + avgGrade + '\'' +
+            ", avgGrade=" + avgGrade +
             '}';
     }
 }
