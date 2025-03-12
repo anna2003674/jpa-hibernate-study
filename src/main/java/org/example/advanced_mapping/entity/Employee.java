@@ -2,6 +2,9 @@ package org.example.advanced_mapping.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -22,15 +25,23 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, Integer salary, Double experience, Address address) {
+    @ElementCollection
+    @CollectionTable(name = "emp_friends", joinColumns = @JoinColumn(name = "emp_id"))
+    @Column(name = "friend_name")
+    List<String> friends = new ArrayList<>();
+
+    public Employee(String name, Integer salary, Double experience) {
         this.name = name;
         this.salary = salary;
         this.experience = experience;
-        this.address = address;
     }
 
-    @Embedded
-    private Address address;
+    public Employee(String name, Integer salary, Double experience, List<String> friends) {
+        this.name = name;
+        this.salary = salary;
+        this.experience = experience;
+        this.friends = friends;
+    }
 
     public Long getId() {
         return id;
@@ -64,12 +75,12 @@ public class Employee {
         this.experience = experience;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<String> getFriends() {
+        return friends;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setFriends(List<String> friends) {
+        this.friends = friends;
     }
 
     @Override
@@ -79,7 +90,7 @@ public class Employee {
             ", name='" + name + '\'' +
             ", salary=" + salary +
             ", experience=" + experience +
-            ", address=" + address +
+            ", friends=" + friends +
             '}';
     }
 }
