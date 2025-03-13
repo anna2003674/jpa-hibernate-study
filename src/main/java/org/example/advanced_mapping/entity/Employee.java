@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "employees")
+//@Entity
+//@Table(name = "employees")
 public class Employee {
     @Column(name = "id")
     @Id
