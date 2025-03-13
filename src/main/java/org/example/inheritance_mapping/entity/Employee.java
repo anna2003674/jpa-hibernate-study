@@ -3,6 +3,8 @@ package org.example.inheritance_mapping.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "employees")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Employee {
     @Id
     @Column(name = "id")
