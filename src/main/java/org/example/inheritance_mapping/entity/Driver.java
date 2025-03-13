@@ -2,8 +2,10 @@ package org.example.inheritance_mapping.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="drivers")
 public class Driver extends Employee {
     @Column(name = "category")
     private Character category;
