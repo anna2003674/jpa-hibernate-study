@@ -2,9 +2,10 @@ package org.example.inheritance_mapping.entity;
 
 import jakarta.persistence.*;
 
-@Entity
+//@Entity
 @Table(name = "employees")
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Employee {
     @Id
     @Column(name = "id")
